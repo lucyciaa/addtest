@@ -83,14 +83,14 @@ if __name__ == '__main__':
             # 并集
             union = len(set(user_goods_dict[i] + user_goods_dict[j]))
             if (union != 0):
-                if (inter / union > 0.2):
+                if (inter / union > 0.3):
                     G_user.add_edge(i, j)
                     ctt += 1
                 # print(inter, union, inter / union)
     print(ctt, ctt2, ctt / ctt2)
 
-    p = 0.4
-    q = 0.6
+    p = 0.5
+    q = 0.5
     for user in range(start, end):
         # 第一步 初始资源赋值
         f_goods = np.zeros(m)
