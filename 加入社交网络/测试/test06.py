@@ -45,7 +45,7 @@ if __name__ == '__main__':
 
     start = 1
     # end = 944
-    end = 100
+    end = 1000
 
     sum_1 = 0
     count = 0

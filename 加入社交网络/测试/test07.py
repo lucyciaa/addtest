@@ -68,12 +68,28 @@ if __name__ == '__main__':
     # 定义关系
     # 用户A和用户B购买过的交集 / 用户A和用户B购买过的并集
     # 构建用户网络
-    ctt = 0
-    ctt2 = 0
+    # ctt = 0
+    # ctt2 = 0
     G_user = nx.Graph()
     for i in range(1, n + 1):
         G_user.add_node(i)
+    #
+    # for i in range(1, n + 1):
+    #     print(i)
+    #     for j in range(i + 1, n + 1):
+    #         ctt2 += 1
+    #         # 交集
+    #         inter = len(set(user_goods_dict[i]).intersection(set(user_goods_dict[j])))
+    #         # 并集
+    #         union = len(set(user_goods_dict[i] + user_goods_dict[j]))
+    #         if (union != 0):
+    #             if (inter / union > 0.2):
+    #                 G_user.add_edge(i, j)
+    #                 ctt += 1
+    #             # print(inter, union, inter / union)
+    # print(ctt, ctt2, ctt / ctt2)
 
+<<<<<<< HEAD
     for i in range(1, n + 1):
         print(i)
         for j in range(i + 1, n + 1):
@@ -91,6 +107,16 @@ if __name__ == '__main__':
 
     p = 0.5
     q = 0.5
+=======
+    # 信任关系网络
+    with open('../epinions/trust_data.txt','r') as f:
+        f_u = f.readlines()
+    for line in f_u:
+        G_user.add_edge(int(line.split(' ')[1]),int(line.split(' ')[2]))
+
+    p = 1
+    q = 0
+>>>>>>> 3df50e02d92ecfb10cafef46a66f8e1fd59c2691
     for user in range(start, end):
         # 第一步 初始资源赋值
         f_goods = np.zeros(m)
@@ -118,14 +144,14 @@ if __name__ == '__main__':
                 for j in G_train.neighbors(i):
                     userToGoods += p * f_user[int(j) - 1] / G_train.degree(int(j))
                 f_final[int(i) - 1] = userToGoods
-        print(f_final)
+        # print(f_final)
 
         # 用户向用户传递资源
         f_user_to_user = np.zeros(n)
         for i in G_user.nodes():
             for j in G_user.neighbors(i):
                 f_user_to_user[int(j) - 1] = f_user_to_user[int(j) - 1] + q * f_user[int(i) - 1] / G_user.degree(int(i))
-        print(f_user_to_user)
+        # print(f_user_to_user)
 
         # 第四步 用户再次向商品传播资源
         for i in G_train.nodes():
@@ -134,7 +160,7 @@ if __name__ == '__main__':
                 for j in G_train.neighbors(i):
                     userToGoods += f_user_to_user[int(j) - 1] / G_train.degree(int(j))
                 f_final[int(i) - 1] = f_final[int(i) - 1] + userToGoods
-        print(f_final)
+        # print(f_final)
 
         # 对结果进行排序
         f_out_sort = abs(np.sort(-f_final))

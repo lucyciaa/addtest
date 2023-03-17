@@ -10,14 +10,14 @@ if __name__ == '__main__':
     random.shuffle(data)
 
     # 分割数据
-    split_idx = int(len(data) * 0.9)
+    split_idx = int(len(data) * 0.8)
     train_data = data[:split_idx]
     test_data = data[split_idx:]
 
     # 将训练数据写入文件
-    with open('train.txt', 'w') as f:
+    with open('../../../数据测试/1/data/train.txt', 'w') as f:
         f.writelines(train_data)
 
     # 将测试数据写入文件
-    with open('test.txt', 'w') as f:
+    with open('../../../数据测试/1/data/test.txt', 'w') as f:
         f.writelines(test_data)
