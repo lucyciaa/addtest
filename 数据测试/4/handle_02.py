@@ -8,7 +8,7 @@ if __name__ == '__main__':
 
     a_train = file.split()
     a_train = np.array(a_train)
-    a_train = a_train.reshape(436036, 3)
+    a_train = a_train.reshape(664824, 3)
     a_train = a_train.astype(float)
     G_train = nx.Graph()
     shape = a_train.shape
@@ -21,7 +21,7 @@ if __name__ == '__main__':
 
 
     # 用户
-    n = 13332
+    n = 49289
 
     # 创建用户购买过的商品的字典
     user_goods_dict = {}
@@ -31,7 +31,7 @@ if __name__ == '__main__':
         file = f.read()
     user_list = file.split()
     user_list = np.array(user_list)
-    user_list = user_list.reshape(436036, 3)
+    user_list = user_list.reshape(664824, 3)
     user_list = user_list.astype(int)
     rows = user_list.shape
     for x in range(0, rows[0]):
